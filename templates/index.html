@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Control Center</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">D</div>
+            <div>
+                <h2>DevOps</h2>
+                <span>CONTROL CENTER</span>
+            </div>
+        </div>
+
+        <p class="menu-label">WORKSPACE</p>
+
+        <nav>
+            <a href="#dashboard" class="nav-link active">▦ Dashboard</a>
+            <a href="#monitoring" class="nav-link">◉ Monitoring</a>
+            <a href="#activity" class="nav-link">◷ Activity Logs</a>
+            <a href="#about" class="nav-link">ⓘ About Project</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="profile">
+                <div class="avatar">D</div>
+                <div>
+                    <strong>DevOps Admin</strong>
+                    <span>Administrator</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+
+    <main class="main-content" id="dashboard">
+
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">Workspace / Dashboard</span>
+                <h1>System Overview</h1>
+            </div>
+
+            <div class="topbar-right">
+                <span class="live-indicator">
+                    <span class="dot"></span> Live Monitoring
+                </span>
+                <div class="date" id="clock">Loading...</div>
+            </div>
+        </header>
+
+
+        <section class="welcome">
+            <div>
+                <span class="eyebrow">DEVOPS MONITORING PLATFORM</span>
+                <h2>Welcome to your Control Center.</h2>
+                <p>Monitor your application health and service availability.</p>
+            </div>
+
+            <div class="welcome-icon">⌘</div>
+        </section>
+
+
+        <section class="section-heading" id="monitoring">
+            <div>
+                <h2>Application Metrics</h2>
+                <p>Real-time application monitoring information</p>
+            </div>
+            <button id="refreshBtn" class="refresh-btn">
+                ↻ Refresh
+            </button>
+        </section>
+
+
+        <section class="metrics-grid">
+
+            <div class="metric-card">
+                <div class="metric-top">
+                    <span>Application Status</span>
+                    <span class="metric-icon green">◉</span>
+                </div>
+                <h2 class="metric-value" id="appStatus">Checking...</h2>
+                <p class="metric-description">
+                    Current application health
+                </p>
+            </div>
+
+
+            <div class="metric-card">
+                <div class="metric-top">
+                    <span>Application Uptime</span>
+                    <span class="metric-icon blue">◷</span>
+                </div>
+                <h2 class="metric-value" id="uptime">--</h2>
+                <p class="metric-description">
+                    Time since application started
+                </p>
+            </div>
+
+
+            <div class="metric-card">
+                <div class="metric-top">
+                    <span>API Availability</span>
+                    <span class="metric-icon purple">⌘</span>
+                </div>
+                <h2 class="metric-value" id="apiStatus">Checking...</h2>
+                <p class="metric-description">
+                    Health endpoint response
+                </p>
+            </div>
+
+
+            <div class="metric-card">
+                <div class="metric-top">
+                    <span>Last Checked</span>
+                    <span class="metric-icon orange">◷</span>
+                </div>
+                <h2 class="metric-value" id="lastChecked">--</h2>
+                <p class="metric-description">
+                    Most recent health check
+                </p>
+            </div>
+
+        </section>
+
+
+        <section class="content-grid">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Service Health</h2>
+                        <p>Current status of application components</p>
+                    </div>
+                    <span class="small-badge">LIVE</span>
+                </div>
+
+                <div class="service-row">
+                    <div class="service-info">
+                        <div class="service-symbol">F</div>
+                        <div>
+                            <strong>Flask Application</strong>
+                            <span>Web application server</span>
+                        </div>
+                    </div>
+                    <span class="status-pill" id="flaskStatus">
+                        Checking
+                    </span>
+                </div>
+
+                <div class="service-row">
+                    <div class="service-info">
+                        <div class="service-symbol">A</div>
+                        <div>
+                            <strong>Health Check API</strong>
+                            <span>/health endpoint</span>
+                        </div>
+                    </div>
+                    <span class="status-pill" id="healthStatus">
+                        Checking
+                    </span>
+                </div>
+
+                <div class="service-row">
+                    <div class="service-info">
+                        <div class="service-symbol">D</div>
+                        <div>
+                            <strong>Dashboard Interface</strong>
+                            <span>Frontend application</span>
+                        </div>
+                    </div>
+                    <span class="status-pill operational">
+                        Operational
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="panel" id="about">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Project Information</h2>
+                        <p>Technology stack</p>
+                    </div>
+                </div>
+
+                <div class="tech-list">
+                    <div><span>Backend</span><strong>Python / Flask</strong></div>
+                    <div><span>Frontend</span><strong>HTML / CSS / JS</strong></div>
+                    <div><span>Container</span><strong>Docker</strong></div>
+                    <div><span>Automation</span><strong>GitHub Actions</strong></div>
+                    <div><span>Testing</span><strong>Pytest</strong></div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="panel activity-panel" id="activity">
+            <div class="panel-heading">
+                <div>
+                    <h2>Recent Activity</h2>
+                    <p>Latest monitoring events in this session</p>
+                </div>
+                <span class="small-badge">EVENTS</span>
+            </div>
+
+            <div id="activityList">
+                <div class="activity-row">
+                    <span class="activity-dot"></span>
+                    <div>
+                        <strong>Dashboard initialized</strong>
+                        <p>Monitoring interface loaded successfully.</p>
+                    </div>
+                    <span class="activity-time">Now</span>
+                </div>
+            </div>
+        </section>
+
+
+        <footer>
+          <span>DevOps Health Monitor | DevOps Control Center © 2026</span>
+          <span>Built with Flask, Docker & GitHub Actions</span>
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,24 +1,41 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
+from datetime import datetime, timezone
+import time
 
 app = Flask(__name__)
 
+START_TIME = time.time()
+
+
 @app.route("/")
 def home():
-    return """
-    <h1>DevOps Health Monitor - Version 2</h1>
-    <h2>Welcome to our DevOps Project!</h2>
-    <p>This application demonstrates CI/CD automation.</p>
-    <p>Built using Python, Flask, Docker and GitHub Actions.</p>
-    <a href="/health">Check Application Health</a>
-    """
+    return render_template("index.html")
+
 
 @app.route("/health")
 def health():
+    uptime = int(time.time() - START_TIME)
+
     return jsonify({
         "status": "healthy",
-        "application": "DevOps Health Monitor"
+        "application": "DevOps Health Monitor",
+        "uptime_seconds": uptime,
+        "timestamp": datetime.now(timezone.utc).isoformat()
     })
+
+
+@app.route("/api/status")
+def status():
+    uptime = int(time.time() - START_TIME)
+
+    return jsonify({
+        "application": "DevOps Health Monitor",
+        "status": "Operational",
+        "uptime_seconds": uptime,
+        "server_time": datetime.now(timezone.utc).isoformat()
+    })
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)
